@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dl630.casus.scene.controller.ControllerLogin">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label text="Voor uw gegevens in" />
+                  <TextField fx:id="usernameField" prefWidth="1.0" promptText="Gebruikersnaam" style="-fx-background-color: E1E1E1; -fx-background-radius: 12;">
+                     <VBox.margin>
+                        <Insets bottom="24.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" prefWidth="1.0" promptText="Wachtwoord" style="-fx-background-color: E1E1E1; -fx-background-radius: 12;">
+                     <VBox.margin>
+                        <Insets bottom="24.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefWidth="200.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.5, 3.0, 2.0);" text="Inloggen">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="windowButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openWindow" prefWidth="160.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.5, 3.0, 2.0);" text="Open Nieuw Venster" />
+   </children>
+</AnchorPane>

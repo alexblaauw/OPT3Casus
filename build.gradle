@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+project.ext.lwjglVersion = "3.3.1"
+project.ext.lwjglNatives = "natives-windows"
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation files('lib/scenicview.jar')
+
+
+    implementation 'mysql:mysql-connector-java:8.0.29'
+    implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+    implementation 'org.openjfx:javafx-base:18.0.1:win'
+    implementation 'org.openjfx:javafx-controls:18.0.1:win'
+    implementation 'org.openjfx:javafx-graphics:18.0.1:win'
+    implementation 'org.openjfx:javafx-fxml:18.0.1:win'
+    implementation 'org.openjfx:javafx-swing:18.0.1:win'
+    implementation 'org.openjfx:javafx-web:18.0.1:win'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+javafx {
+    version = "17.0.1"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.web' ]
+}
+
+mainClassName = 'com.dl630.casus.Main'
