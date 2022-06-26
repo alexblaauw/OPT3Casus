@@ -21,18 +21,8 @@ public class ControllerToevoegen extends HuurController {
     @FXML
     public Button addButton;
 
-    @FXML
-    public Label typeLabel;
-
-    @FXML
-    public VBox contentBox;
-
-    @FXML
-    public VBox detailBox;
-
     @Override
     public void init() {
-        System.out.println("THIS IS THE BLEPPY SPPEPPY");
         loadSession();
         initTabPane(tabPane, 2, getSession());
         terugButton.setOnAction(event -> {
