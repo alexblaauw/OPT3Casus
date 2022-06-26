@@ -33,6 +33,10 @@ public class ControllerLogin extends SimpleController {
             }
         }
 
+        tryLogin(gebruiker, password);
+    }
+
+    private void tryLogin(Gebruiker gebruiker, String password) {
         if (gebruiker != null) {
             if (gebruiker.getWachtwoord().equals(password)) {
                 getSession().setLoggedInUser(gebruiker);
@@ -44,7 +48,6 @@ public class ControllerLogin extends SimpleController {
             updateLabels();
         }
     }
-
     public void updateLabels() {
 
     }

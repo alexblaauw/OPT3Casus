@@ -3,7 +3,7 @@ package com.dl630.casus.gebruiker;
 import java.util.ArrayList;
 
 public class GebruikerIndex {
-    private static ArrayList<Gebruiker> gebruikers = new ArrayList<>();
+    private static final ArrayList<Gebruiker> gebruikers = new ArrayList<>();
 
     public static void initIndexes() {
         gebruikers.add(new Gebruiker("maximus22", "geheim"));

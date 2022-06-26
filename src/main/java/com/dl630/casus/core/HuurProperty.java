@@ -7,10 +7,10 @@ import javafx.scene.control.TextField;
 
 public class HuurProperty<T> {
     private T value;
-    private ValueReader read;
-    private TextField textField;
+    private final ValueReader read;
+    private final TextField textField;
 
-    private Label label;
+    private final Label label;
 
     public HuurProperty(ValueReader read) {
         this.textField = new TextField();
@@ -37,9 +37,7 @@ public class HuurProperty<T> {
     }
 
     public static ValueReader getStringReader() {
-        return (huurProperty, textField) -> {
-            huurProperty.set(textField.getText());
-        };
+        return (huurProperty, textField) -> huurProperty.set(textField.getText());
     }
 
     public static ValueReader getDoubleReader() {

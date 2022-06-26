@@ -3,7 +3,7 @@ package com.dl630.casus.huur;
 import com.dl630.casus.core.HuurProperty;
 
 public class PersoonAutoObject extends HuurObject {
-    private HuurProperty<String> brand;
+    private final HuurProperty<String> brand;
 
     public PersoonAutoObject(String title, Double weight, String brand) {
         super(title);
