@@ -33,11 +33,11 @@ public class SceneDetail extends SimpleScene {
         return object.getAvailable() ? e -> {
             String naam = controller.firstNameField.getText() + " " + controller.lastNameField.getText();
             selectedObject.setUnavailable(naam, controller.getSession().getLoggedInUser());
-            EventSubscriber.broadcastEvent("object_verhuurd");
+            EventSubscriber.broadcastEventGlobal("object_verhuurd");
             changeScene(selectedObject, controller.getSession());
         } : e -> {
             selectedObject.setAvailable();
-            EventSubscriber.broadcastEvent("object_retour");
+            EventSubscriber.broadcastEventGlobal("object_retour");
             changeScene(selectedObject, controller.getSession());
         };
     }

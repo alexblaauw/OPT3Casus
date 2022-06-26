@@ -78,4 +78,8 @@ public class Session {
     public Stage getStage() {
         return stage;
     }
+
+    public EventSubscriber getEventSubscriber() {
+        return eventSubscriber;
+    }
 }

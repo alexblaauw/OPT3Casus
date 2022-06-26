@@ -1,6 +1,7 @@
 package com.dl630.casus.scene.controller;
 
 import com.dl630.casus.Main;
+import com.dl630.casus.core.EventSubscriber;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +27,7 @@ public class ControllerToevoegen extends HuurController {
         loadSession();
         initTabPane(tabPane, 2, getSession());
         terugButton.setOnAction(event -> {
-            System.out.println(getSession());
+            EventSubscriber.broadcastEventGlobal("huur_index_update");
             getSession().setScene("Beheer");
         });
     }

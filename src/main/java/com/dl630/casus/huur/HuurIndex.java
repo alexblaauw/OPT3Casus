@@ -1,6 +1,8 @@
 package com.dl630.casus.huur;
 
+import com.dl630.casus.Main;
 import com.dl630.casus.core.EventSubscriber;
+import com.dl630.casus.core.Session;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,6 @@ public class HuurIndex {
 
     public static void addHuurObject(HuurObject huurObject) {
         huurObjecten.add(huurObject);
-        EventSubscriber.broadcastEvent("huur_index_update");
     }
 
     public static HuurObject getObjectWithTitle(String title) {

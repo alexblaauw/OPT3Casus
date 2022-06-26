@@ -1,6 +1,7 @@
 package com.dl630.casus.scene.controller;
 
 import com.dl630.casus.Main;
+import com.dl630.casus.core.EventListener;
 import com.dl630.casus.core.EventSubscriber;
 import com.dl630.casus.huur.HuurIndex;
 import com.dl630.casus.huur.HuurObject;
@@ -39,7 +40,7 @@ public class ControllerOverview extends ControllerLoader {
         fillGridPane(gridPane);
 
         addSidebar(sidebarPane);
-        EventSubscriber.subscribeEvent(() -> {
+        getSession().getEventSubscriber().subscribeEvent(() -> {
             fillGridPane(gridPane);
         }, "huur_index_update");
     }
@@ -52,19 +53,39 @@ public class ControllerOverview extends ControllerLoader {
         for (HuurObject huurObject : HuurIndex.getHuurObjecten()) {
             ControllerOverviewItem controllerOverviewItem = (ControllerOverviewItem) getController();
             controllerOverviewItem.titleLabel.setText(huurObject.getTitle());
-            controllerOverviewItem.availabilityLabel.setText(huurObject.getAvailable() ? "Ja" : "Nee");
             controllerOverviewItem.button.setOnAction(getButtonAction(huurObject));
-            if (!huurObject.getAvailable()) {
-                controllerOverviewItem.titleLabel.setOpacity(0.7);
-                controllerOverviewItem.beschikbaar.setOpacity(0.7);
-                controllerOverviewItem.availabilityLabel.setOpacity(0.7);
-                controllerOverviewItem.imageView.setOpacity(0.7);
-            }
+            setItemAvailability(controllerOverviewItem, huurObject.getAvailable());
+            addAvailabilityListeners(controllerOverviewItem, huurObject);
 
             gridPane.add(controllerOverviewItem.scenePane, counter % 2, counter / 2);
-
             counter++;
         }
+
+        getSession().getEventSubscriber().subscribeEvent(() -> {
+            getSession().setScene("Overview");
+        }, "huur_index_update");
+    }
+
+    private void addAvailabilityListeners(ControllerOverviewItem controllerOverviewItem, HuurObject huurObject) {
+        getSession().getEventSubscriber().subscribeEvent(getAvailabilityEvent(controllerOverviewItem, huurObject),
+                "object_verhuurd");
+        getSession().getEventSubscriber().subscribeEvent(getAvailabilityEvent(controllerOverviewItem, huurObject),
+                "object_retour");
+    }
+
+    private EventListener getAvailabilityEvent(ControllerOverviewItem controllerOverviewItem, HuurObject huurObject) {
+        return () -> {
+            setItemAvailability(controllerOverviewItem, huurObject.getAvailable());
+        };
+    }
+
+    public void setItemAvailability(ControllerOverviewItem controllerOverviewItem, boolean available) {
+        Float opacity = available ? 1.0F : 0.7F;
+        controllerOverviewItem.titleLabel.setOpacity(opacity);
+        controllerOverviewItem.beschikbaar.setOpacity(opacity);
+        controllerOverviewItem.availabilityLabel.setOpacity(opacity);
+        controllerOverviewItem.imageView.setOpacity(opacity);
+        controllerOverviewItem.availabilityLabel.setText(available ? "Ja" : "Nee");
     }
 
     public EventHandler<ActionEvent> getButtonAction(HuurObject object) {

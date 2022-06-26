@@ -7,6 +7,7 @@ public class GebruikerIndex {
 
     public static void initIndexes() {
         gebruikers.add(new Gebruiker("maximus22", "geheim"));
+        gebruikers.add(new Gebruiker("shenkie", "geheim"));
     }
 
     public ArrayList<Gebruiker> getGebruikers() {
